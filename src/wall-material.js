@@ -8,7 +8,7 @@ export class WallMaterial {
         if (wallMaterial == null) {
             wallMaterial = new BABYLON.StandardMaterial("wallMaterialMaterial", scene);
 
-            wallMaterial.diffuseTexture = new BABYLON.Texture("/res/wall1.jpeg", scene);
+            wallMaterial.diffuseTexture = new BABYLON.Texture("/res/wall3.jpeg", scene);
             wallMaterial.diffuseTexture.uScale = 10;
             wallMaterial.diffuseTexture.vScale = 1;
 
