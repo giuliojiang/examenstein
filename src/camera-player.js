@@ -24,11 +24,11 @@ class CameraPlayer {
         // Create our own manager:
         var FreeCameraKeyboardRotateInput = function () {
                 this._keys = [];
-                this.keysLeft = [68];
-                this.keysRight = [65];
-                this.keysForward = [87];
-                this.keysBack = [83];
-                this.sensibility = 0.01;
+                this.keysLeft = [68, 39];
+                this.keysRight = [65, 37];
+                this.keysForward = [87, 38];
+                this.keysBack = [83, 40];
+                this.sensibility = 0.005;
                 this.moveSpeed = 0.1;
         }
 

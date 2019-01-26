@@ -6,7 +6,6 @@ Example.greet();
 
 window.addEventListener('DOMContentLoaded', function(){
     Render.render();
-
 });
 
 window.thePlayer = cameraPlayer.player;
