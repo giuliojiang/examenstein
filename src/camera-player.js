@@ -4,7 +4,7 @@ class CameraPlayer {
 
     constructor() {
         this.x = 0;
-        this.y = 0;
+        this.z = 0;
     }
 
     setup(scene) {
@@ -18,6 +18,8 @@ class CameraPlayer {
         // Let's remove default keyboard:
         camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
         camera.inputs.remove(camera.inputs.attached.mouse);
+
+        var cameraPlayer = this;
 
         // Create our own manager:
         var FreeCameraKeyboardRotateInput = function () {
@@ -92,6 +94,12 @@ class CameraPlayer {
         FreeCameraKeyboardRotateInput.prototype.checkInputs = function () {
             if (this._onKeyDown) {
                 var camera = this.camera;
+
+                // Pre-update camera positions
+                camera.position.x = cameraPlayer.x;
+                camera.position.y = 1;
+                camera.position.z = cameraPlayer.z;
+
                 // Keyboard
                 for (var index = 0; index < this._keys.length; index++) {
                     var keyCode = this._keys[index];
@@ -107,6 +115,10 @@ class CameraPlayer {
                     else if (this.keysBack.indexOf(keyCode) !== -1) {
                         camera.position.addInPlace(camera.getDirection(BABYLON.Axis.Z).scale(-this.moveSpeed));
                     }
+
+                    // Update camera positions
+                    cameraPlayer.x = camera.position.x;
+                    cameraPlayer.z = camera.position.z;
                 }
             }
         };
