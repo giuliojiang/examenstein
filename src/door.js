@@ -1,11 +1,13 @@
 export function BuildAnimatedDoor(x1, z1, x2, z2, scene) {
   var frameRate = 1;
-
+  const door_width = x1 - x2;
   var door = BABYLON.MeshBuilder.CreateBox(
     "door",
-    { width: 2, height: 4, depth: 0.1 },
+    { width: door_width, height: 2.5, depth: 0.1 },
     scene
   );
+  door.setPositionWithLocalVector(new BABYLON.Vector3((x1 + x2) / 2, 1.25, z1));
+
   var hinge = BABYLON.MeshBuilder.CreateBox("hinge", {}, scene);
   hinge.isVisible = false;
   door.parent = hinge;
