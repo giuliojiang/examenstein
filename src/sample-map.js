@@ -19,11 +19,11 @@ class SimpleMap {
             {'x1': -5.0, 'z1': -5.0, 'x2': 15.0, 'z2': -5.0},
             {'x1': -5.0, 'z1': -5.0,  'x2': -5.0, 'z2': 35.0},
             {'x1': -5.0, 'z1': 5.0,  'x2': -2.0, 'z2': 5.0},
-            {'x1': -1.0, 'z1': 5.0,  'x2': 5.0, 'z2': 5.0},
+            {'x1': 0.0, 'z1': 5.0,  'x2': 5.0, 'z2': 5.0},
             // room 2 + 3
             {'x1': -5.0, 'z1': 35.0, 'x2': 15.0, 'z2': 35.0},
             {'x1': 5.0, 'z1': 35.0, 'x2': 5.0, 'z2': 32.0},
-            {'x1': 5.0, 'z1': 31.0, 'x2': 5.0, 'z2': -1.0},
+            {'x1': 5.0, 'z1': 30.0, 'x2': 5.0, 'z2': 0.0},
             {'x1': 5.0, 'z1': -2.0, 'x2': 5.0, 'z2': -5.0},
             {'x1': 15.0, 'z1': 35.0, 'x2': 15.0, 'z2': -5.0}
         ];
@@ -62,7 +62,7 @@ class SimpleMap {
         // right: -1
         // bottom: 4
         // top: 6
-        return this.isValidPositionRoomGeneral(x, z, -2.5, -0.5, 4, 6);
+        return this.isValidPositionRoomGeneral(x, z, -2.5, 0.5, 4, 6);
     }
 
     isValidPositionDoor1(x, z) {
@@ -70,7 +70,7 @@ class SimpleMap {
         // right: 6
         // bottom: 31
         // top: 32
-        return this.isValidPositionRoomGeneral(x, z, 4, 6, 30.5, 32.5);
+        return this.isValidPositionRoomGeneral(x, z, 4, 6, 29.5, 32.5);
     }
 
     isValidPositionDoor2(x, z) {
@@ -78,7 +78,7 @@ class SimpleMap {
         // right: 6
         // bottom: -2
         // top: -1
-        return this.isValidPositionRoomGeneral(x, z, 4, 6, -2.5, -0.5);
+        return this.isValidPositionRoomGeneral(x, z, 4, 6, -2.5, 0.5);
     }
 
     isValidPosition(x, z) {
