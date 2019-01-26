@@ -4,6 +4,7 @@ import { GameOver } from "./game-over";
 
 window.addEventListener('DOMContentLoaded', function(){
     Render.render();
+    GameOver.registerNewGameButtonHandler();
 });
 
 window.thePlayer = cameraPlayer.player;

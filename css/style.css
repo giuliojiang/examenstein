@@ -53,3 +53,8 @@ div {
 .game-over {
     font-size: 50px;
 }
+
+.new-game {
+    font-size: 35px;
+    cursor: pointer;
+}
