@@ -1,11 +1,29 @@
 <html>
     <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Anton');
+        </style>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="/dist/main.js"></script>
     </head>
     <body>
+        <!-- Main render canvas -->
         <div class="container">
             <canvas id="canvas" class="render-canvas"></canvas>
+        </div>
+        <!-- Game over screen -->
+        <div class="container level-back" data-game-over>
+            <div class="full-flex">
+                <div class="game-over">GAME OVER</div>
+                <div class="new-game" data-new-game-button>NEW GAME</div>
+            </div>
+        </div>
+        <!-- Start game screen -->
+        <div class="container level-front" data-start-screen>
+            <div class="full-flex">
+                <div class="game-title">IMPERIAL WOLFENSTEIN</div>
+                <div class="new-game" data-start-game-button>PLAY</div>
+            </div>
         </div>
     </body>
 </html>
