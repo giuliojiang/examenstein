@@ -25,7 +25,10 @@ export class Enemy {
                 sphere.position.x += direction.x * 0.1;
                 sphere.position.z += direction.z * 0.1;
                 if (new BABYLON.Vector3(player.x - sphere.position.x, 0, player.z - sphere.position.z).length() < 2) {
-                    GameOver.showGameOver();
+                    player.hp -= 25;
+                    if(player.hp <= 0) {
+                        GameOver.showGameOver();
+                    }
                 }
             }
 

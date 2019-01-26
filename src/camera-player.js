@@ -5,6 +5,7 @@ class CameraPlayer {
     constructor() {
         this.x = 0;
         this.z = 0;
+        this.hp = 100;
     }
 
     setup(scene) {

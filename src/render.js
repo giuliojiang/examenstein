@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs';
+import * as GUI from 'babylonjs-gui';
 import { player } from './camera-player';
 import { Enemy } from './enemy';
 import { GroundMaterial } from './ground-material';
@@ -46,13 +47,22 @@ export class Render {
             // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
             var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
 
-            // var enemy1 = new Enemy(-5, 0);
-            // enemy1.setup(scene);
+            var enemy1 = new Enemy(-5, 0);
+            enemy1.setup(scene);
 
             // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
             var ground = BABYLON.Mesh.CreateGround('ground1', 1000, 1000, 2, scene, false);
             GroundMaterial.addMaterial(ground, scene);
             ground.checkCollisions = true;
+
+            var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI", true, scene);
+            var textblock = new GUI.TextBlock();
+            textblock.text = "HP: "+player.hp.toString();
+            textblock.fontSize = 24;
+            textblock.top = -100;
+            textblock.color = "white";
+            textblock.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+            advancedTexture.addControl(textblock);
 
             samplemap.map;
             BuildWall(-5,5,5,5, scene);

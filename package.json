@@ -20,8 +20,8 @@
   "homepage": "https://github.com/giuliojiang/uniquitous-octo-dollop#readme",
   "dependencies": {
     "babylonjs": "^3.3.0",
+    "babylonjs-gui": "^3.3.0",
     "express": "^4.16.4",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1"
   }
-}
