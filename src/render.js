@@ -13,6 +13,8 @@ export class Render {
             // Create a basic BJS Scene object
             var scene = new BABYLON.Scene(engine);
             scene.collisionsEnabled = true;
+            scene.gravity = new BABYLON.Vector3(0, -9.81, 0);
+
             // setup player and camera
             player.setup(scene);
 
