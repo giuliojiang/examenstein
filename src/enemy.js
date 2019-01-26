@@ -13,7 +13,7 @@ export class Enemy {
     setup(scene) {
         var player = cameraPlayer.player;
         var exam = BABYLON.MeshBuilder.CreatePlane("exam", { width: 1.5, height: 2}, scene); //default exam
-        
+
         var dynamicTexture = new BABYLON.DynamicTexture("mydt", {width:384, height:512}, scene)
         var textureContext = dynamicTexture.getContext();
         // textureContext.clearRect();
@@ -30,8 +30,8 @@ export class Enemy {
         scene.registerBeforeRender(function () {
             if (StartScreen.isStarted()) {
                 var direction = BABYLON.Vector3.Normalize(new BABYLON.Vector3(player.x - exam.position.x, 0, player.z - exam.position.z));
-                exam.position.x += direction.x * 0.05;
-                exam.position.z += direction.z * 0.05;
+                exam.position.x += direction.x * 0.02;
+                exam.position.z += direction.z * 0.02;
                 if (new BABYLON.Vector3(player.x - exam.position.x, 0, player.z - exam.position.z).length() < 2) {
                     player.hp -= 25;
                     if(player.hp <= 0) {
