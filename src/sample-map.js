@@ -30,7 +30,6 @@ class SimpleMap {
     }
 
     isValidPosition(x, z) {
-        console.info(`Checking position ${x}, ${z}`);
         return this.isValidPositionRoom0(x, z);
     }
 
