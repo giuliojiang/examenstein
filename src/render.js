@@ -1,5 +1,23 @@
 import * as BABYLON from 'babylonjs';
 
+function BuildWall(x1, z1, x2, z2){
+    var wall;
+    if ((z1 - z2) == 0){
+        wall = BABYLON.MeshBuilder.CreatePlane("wall", {width: Math.abs(x1-x2), height: 2.5}, scene);
+        //wall1.setPositionWithLocalVector(new BABYLON.Vector3(0, 1.25, 5));
+    }
+    else{
+        wall = BABYLON.MeshBuilder.CreatePlane("wall", {width: Math.abs(z1-z2), height: 2.5}, scene);
+        wall.rotation.y = Math.PI/2;
+    }
+
+
+
+    wall1.setPositionWithLocalVector(new BABYLON.Vector3(0, 1.25, 5));
+
+    wall2.rotation.y = Math.PI/2;
+}
+
 export class Render {
     static render() {
         // Get the canvas DOM element
