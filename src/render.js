@@ -1,10 +1,14 @@
 import * as BABYLON from "babylonjs";
 import { player } from "./camera-player";
 import { Enemy } from "./enemy";
+import { DoorMaterial } from "./door-material";
 import { GroundMaterial } from "./ground-material";
 import { WallMaterial } from "./wall-material";
 import * as samplemap from "./sample-map";
 import { Door } from "./door";
+
+// GLOBAL VARS
+var door = null;
 
 function BuildWall(x1, z1, x2, z2, scene) {
   var wall, wall_width;
@@ -34,8 +38,7 @@ function BuildWall(x1, z1, x2, z2, scene) {
   WallMaterial.addMaterial(wall, scene);
   wall.checkCollisions = true;
 }
-
-export class Render {
+class Render {
   static render() {
     // Get the canvas DOM element
     var canvas = document.getElementById("canvas");
@@ -77,11 +80,13 @@ export class Render {
       ground.checkCollisions = true;
 
       samplemap.map;
+      door = Door.buildDoor(-5, 5, -5, -5, scene);
+      DoorMaterial.addMaterial(door, scene);
+
       BuildWall(-5, 5, 5, 5, scene);
       BuildWall(5, 5, 5, -5, scene);
       BuildWall(5, -5, -5, -5, scene);
       BuildWall(-5, 5, -5, -5, scene);
-      Door.buildDoor(-5, 5, -5, -5, scene);
 
       // var ground;
       // for(var ground_count = 0; ground_count < samplemap.map.grounds.length; ground_count++){
@@ -110,3 +115,5 @@ export class Render {
     });
   }
 }
+
+export { door, Render };

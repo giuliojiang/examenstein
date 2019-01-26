@@ -1,6 +1,7 @@
 import * as BABYLON from "babylonjs";
 import { WeaponFire } from "./weapon-fire";
-
+import { Door } from "./door";
+import { door } from "./render";
 class CameraPlayer {
   constructor() {
     this.x = 0;
@@ -62,6 +63,7 @@ class CameraPlayer {
             }
           }
           WeaponFire.checkFire(evt);
+          Door.openDoor(evt, door, scene);
         };
         this._onKeyUp = function(evt) {
           if (
