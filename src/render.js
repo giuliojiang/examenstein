@@ -41,9 +41,5 @@ export class Render {
             engine.resize();
         });
 
-        setInterval(() => {
-            canvas.focus();
-        }, 250);
-
     }
 }

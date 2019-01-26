@@ -58,3 +58,7 @@ div {
     font-size: 35px;
     cursor: pointer;
 }
+
+.game-title {
+    font-size: 60px;
+}
