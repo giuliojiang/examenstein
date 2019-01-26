@@ -25,7 +25,7 @@ export class Enemy {
                 console.log(direction);
                 sphere.position.x += direction.x * 0.1;
                 sphere.position.z += direction.z * 0.1;
-                if (new BABYLON.Vector3(player.x - sphere.position.x, 0, player.z - sphere.position.z).length() < 1) {
+                if (new BABYLON.Vector3(player.x - sphere.position.x, 0, player.z - sphere.position.z).length() < 2) {
                     GameOver.showGameOver();
                 }
             }

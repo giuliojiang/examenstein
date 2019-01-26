@@ -20,4 +20,8 @@ export class StartScreen {
     static isStarted() {
         return started;
     }
+
+    static stopGame() {
+        started = false;
+    }
 }

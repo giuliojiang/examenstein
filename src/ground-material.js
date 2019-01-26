@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs';
+import { player } from './camera-player';
 
 var groundMaterial = null;
 
