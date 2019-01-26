@@ -15,7 +15,7 @@ export class Render {
 
             // setup player and camera
             player.setup(scene);
-            
+
             // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
             var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
             var enemy1 = new Enemy(0, 0, 0);
@@ -37,6 +37,10 @@ export class Render {
         window.addEventListener('resize', function () {
             engine.resize();
         });
+
+        setInterval(() => {
+            canvas.focus();
+        }, 250);
 
     }
 }
