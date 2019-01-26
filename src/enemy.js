@@ -22,7 +22,6 @@ export class Enemy {
         scene.registerBeforeRender(function () {
             if (StartScreen.isStarted()) {
                 var direction = BABYLON.Vector3.Normalize(new BABYLON.Vector3(player.x - sphere.position.x, 0, player.z - sphere.position.z));
-                console.log(direction);
                 sphere.position.x += direction.x * 0.1;
                 sphere.position.z += direction.z * 0.1;
                 if (new BABYLON.Vector3(player.x - sphere.position.x, 0, player.z - sphere.position.z).length() < 2) {
