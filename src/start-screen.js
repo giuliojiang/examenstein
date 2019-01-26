@@ -1,3 +1,4 @@
+var started = false;
 export class StartScreen {
     static registerButtonHandler() {
         let elem = document.querySelector("[data-start-game-button]");
@@ -12,6 +13,11 @@ export class StartScreen {
             // focus on the canvas
             let canvas = document.getElementById("canvas");
             canvas.focus();
+            started = true;
         });
+    }
+
+    static isStarted() {
+        return started;
     }
 }
