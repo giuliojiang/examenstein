@@ -1,5 +1,6 @@
 import * as BABYLON from 'babylonjs';
 import { player } from './camera-player';
+import { Enemy } from './enemy';
 
 export class Render {
     static render() {
@@ -17,11 +18,8 @@ export class Render {
 
             // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
             var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
-            // Create a built-in "sphere" shape; its constructor takes 6 params: name, segment, diameter, scene, updatable, sideOrientation
-            var box = BABYLON.Mesh.CreateBox("box", 2, scene);
-            var boxMaterial = new BABYLON.StandardMaterial("material", scene);
-            boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
-            box.material = boxMaterial;
+            var enemy1 = new Enemy(0, 0, 0);
+            enemy1.setup(scene);
             // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
             var ground = BABYLON.Mesh.CreateGround('ground1', 10, 10, 2, scene, false);
             var wall = BABYLON.MeshBuilder.CreatePlane("wall", {width: 5, height: 2}, scene);
