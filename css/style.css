@@ -62,3 +62,22 @@ div {
 .game-title {
     font-size: 60px;
 }
+
+.handgun-positioner {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.handgun-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.handgun {
+    height: 50vh;
+}
