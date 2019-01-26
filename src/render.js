@@ -32,7 +32,7 @@ function BuildWall(x1, z1, x2, z2, scene) {
     );
     wall.rotation.y = Math.PI / 2;
   }
-  WallMaterial.addMaterial(wall, scene);
+  WallMaterial.addMaterial(wall, scene, wall_width);
   wall.checkCollisions = true;
 }
 
