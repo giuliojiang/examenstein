@@ -35,7 +35,9 @@ export class Render {
             // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
             var ground = BABYLON.Mesh.CreateGround('ground1', 10, 10, 2, scene, false);
             BuildWall(5,5,-5,5, scene);
-
+            BuildWall(5,5,5,-5,scene);
+            BuildWall(5,-5,5,-5,scene);
+            BuildWall(-5,5,5,-5,scene);
             // var wall1 = BABYLON.MeshBuilder.CreatePlane("wall", {width: 10, height: 2.5}, scene);
             // var wall2 = BABYLON.MeshBuilder.CreatePlane("wall", {width: 10, height: 2.5}, scene);
             // var wall3 = BABYLON.MeshBuilder.CreatePlane("wall", {width: 10, height: 2.5}, scene);
