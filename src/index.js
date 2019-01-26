@@ -1,4 +1,9 @@
 import { Example } from "./example-class";
-import * as BABYLON from 'babylonjs';
+import { Render } from "./render";
 
 Example.greet();
+
+window.addEventListener('DOMContentLoaded', function(){
+    Render.render();
+
+});
