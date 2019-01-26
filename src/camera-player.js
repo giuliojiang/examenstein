@@ -14,6 +14,7 @@ class CameraPlayer {
         camera.setTarget(new BABYLON.Vector3(1, 1, 0));
         // Attach the camera to the canvas
         camera.attachControl(canvas, true);
+        camera.inertia = 0;
         // Let's remove default keyboard:
         camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
         camera.inputs.remove(camera.inputs.attached.mouse);
@@ -29,7 +30,7 @@ class CameraPlayer {
                 this.keysRight = [65, 37];
                 this.keysForward = [87, 38];
                 this.keysBack = [83, 40];
-                this.sensibility = 0.005;
+                this.sensibility = 0.03;
                 this.moveSpeed = 0.1;
         }
 
