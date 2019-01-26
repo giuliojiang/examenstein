@@ -34,6 +34,7 @@ function BuildWall(x1, z1, x2, z2, scene) {
   }
   WallMaterial.addMaterial(wall, scene);
   wall.checkCollisions = true;
+  wall.isPickable = false;
 }
 
 export class Render {
@@ -58,7 +59,7 @@ export class Render {
         // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
         var light = new BABYLON.HemisphericLight("light1",new BABYLON.Vector3(0, 1, 0),scene);
 
-        var enemy1 = new Enemy(-5, 0);
+        var enemy1 = new Enemy(-3, 0);
         enemy1.setup(scene);
 
 
@@ -66,6 +67,7 @@ export class Render {
         var ground = BABYLON.Mesh.CreateGround("ground1",1000,1000,2,scene,false);
         GroundMaterial.addMaterial(ground, scene);
         ground.checkCollisions = true;
+        ground.isPickable = false;
 
         var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI", true, scene);
         var textblock = new GUI.TextBlock();
