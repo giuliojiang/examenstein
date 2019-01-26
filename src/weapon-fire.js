@@ -4,7 +4,7 @@ export class WeaponFire {
     static checkFire(evt, scene) {
 
         var shoot = (scene) => {
-            let enemy = scene.getMeshByName("enemy");
+            let enemy = scene.getMeshByName("exam");
             let p0 = camera.getDirection(BABYLON.Axis.Z);
             let p1 = camera.position;
             let a = (p0.z - p1.z) / (p0.x - p1.x);

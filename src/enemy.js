@@ -12,20 +12,27 @@ export class Enemy {
 
     setup(scene) {
         var player = cameraPlayer.player;
-        var sphere = BABYLON.MeshBuilder.CreateSphere("enemy", { diameter: 1, diameterX: 1 }, scene); //default sphere
-        var sphereMaterial = new BABYLON.StandardMaterial("material", scene);
-        sphereMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
-        sphere.material = sphereMaterial;
-        sphere.setPositionWithLocalVector(new BABYLON.Vector3(this.x, 0.5, this.z));
-        sphere.checkCollisions = true;
-        sphere.isPickable = true;
+        var exam = BABYLON.MeshBuilder.CreatePlane("exam", { width: 1.5, height: 2}, scene); //default exam
+
+        var dynamicTexture = new BABYLON.DynamicTexture("mydt", {width:384, height:512}, scene)
+        var textureContext = dynamicTexture.getContext();
+        // textureContext.clearRect();
+
+        var examMaterial = new BABYLON.StandardMaterial("material", scene)
+        examMaterial.emissiveColor = new BABYLON.Color3(1, 1, 1);
+        examMaterial.diffuseTexture = dynamicTexture;
+        exam.material = examMaterial;
+        dynamicTexture.drawText("EXAM", null, 100, "bold 100px monospace", "black", "white", 512, true, true)
+        exam.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
+        exam.setPositionWithLocalVector(new BABYLON.Vector3(this.x, 1, this.z));
+        exam.checkCollisions = true;
 
         scene.registerBeforeRender(function () {
             if (StartScreen.isStarted()) {
-                var direction = BABYLON.Vector3.Normalize(new BABYLON.Vector3(player.x - sphere.position.x, 0, player.z - sphere.position.z));
-                sphere.position.x += direction.x * 0.1;
-                sphere.position.z += direction.z * 0.1;
-                if (new BABYLON.Vector3(player.x - sphere.position.x, 0, player.z - sphere.position.z).length() < 2) {
+                var direction = BABYLON.Vector3.Normalize(new BABYLON.Vector3(player.x - exam.position.x, 0, player.z - exam.position.z));
+                exam.position.x += direction.x * 0.02;
+                exam.position.z += direction.z * 0.02;
+                if (new BABYLON.Vector3(player.x - exam.position.x, 0, player.z - exam.position.z).length() < 2) {
                     player.hp -= 25;
                     if(player.hp <= 0) {
                         GameOver.showGameOver();

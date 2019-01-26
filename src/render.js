@@ -32,7 +32,7 @@ function BuildWall(x1, z1, x2, z2, scene) {
     );
     wall.rotation.y = Math.PI / 2;
   }
-  WallMaterial.addMaterial(wall, scene);
+  WallMaterial.addMaterial(wall, scene, wall_width);
   wall.checkCollisions = true;
   wall.isPickable = false;
 }
@@ -64,38 +64,32 @@ export class Render {
 
 
         // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
-        var ground = BABYLON.Mesh.CreateGround("ground1",1000,1000,2,scene,false);
-        GroundMaterial.addMaterial(ground, scene);
-        ground.checkCollisions = true;
-        ground.isPickable = false;
+        var ground;
+        for(var ground_count = 0; ground_count < samplemap.map.grounds.length; ground_count++){
+            ground = BABYLON.Mesh.CreateGround('ground', samplemap.map.grounds[ground_count].w, samplemap.map.grounds[ground_count].h, 2, scene, false);
+            GroundMaterial.addMaterial(ground, scene);
+            ground.checkCollisions = true;
+        }
 
         var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI", true, scene);
         var textblock = new GUI.TextBlock();
         textblock.text = "HP: "+player.hp.toString();
         textblock.fontSize = 24;
-        textblock.top = -100;
+        textblock.top = -50;
         textblock.color = "white";
         textblock.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
         advancedTexture.addControl(textblock);
 
         samplemap.map;
-        BuildWall(-5, 5, 5, 5, scene);
-        BuildWall(5, 5, 5, -5, scene);
-        BuildWall(5, -5, -5, -5, scene);
-        BuildWall(-5, 5, -5, -5, scene);
-        BuildAnimatedDoor(-5, 5, -5, -5, scene);
 
-      // var ground;
-      // for(var ground_count = 0; ground_count < samplemap.map.grounds.length; ground_count++){
-      //     ground = BABYLON.Mesh.CreateGround('ground', samplemap.map.grounds[ground_count].w, samplemap.map.grounds[ground_count].h, 2, scene, false);
-      //     GroundMaterial.addMaterial(ground, scene);
-      //     ground.checkCollisions = true;
-      // }
-      //
-      // var walls;
-      // for(var wall_count = 0; wall_count < samplemap.map.grounds.length; wall_count++){
-      //     BuildWall(samplemap.map.walls[wall_count].x1, samplemap.map.walls[wall_count].y1, samplemap.map.walls[wall_count].x2, samplemap.map.walls[wall_count].y2)
-      // }
+      var walls;
+      for(var wall_count = 0; wall_count < samplemap.map.walls.length; wall_count++){
+          var x1 = samplemap.map.walls[wall_count].x1;
+          var z1 = samplemap.map.walls[wall_count].z1;
+          var x2 = samplemap.map.walls[wall_count].x2;
+          var z2 = samplemap.map.walls[wall_count].z2;
+          BuildWall(x1, z1, x2, z2, scene);
+      }
 
       // Return the created scene
       return scene;
