@@ -4,7 +4,9 @@
 
 class SimpleMap {
   constructor() {
-    this.grounds = [{'x': 0.0, 'z': 0.0, 'w': 10.0, 'h': 20.0}] // list of grounds
+    this.grounds = [
+        {'x': 0.0, 'z': 0.0, 'w': 1000.0, 'h': 2000.0}
+    ] // list of grounds
     this.walls = [
       { 'x1': 0.0, 'z1': 0.0,  'x2': 10.0, 'z2': 0.0},
       {'x1': 10.0, 'z1': 0.0,  'x2': 10.0, 'z2': 20.0},
