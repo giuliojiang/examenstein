@@ -1,6 +1,7 @@
 import * as BABYLON from 'babylonjs';
 import { player } from './camera-player';
 import { Enemy } from './enemy';
+import { GroundMaterial } from './ground-material';
 
 export class Render {
     static render() {
@@ -22,8 +23,11 @@ export class Render {
             var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
             var enemy1 = new Enemy(0, 0, 0);
             enemy1.setup(scene);
+
             // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
-            var ground = BABYLON.Mesh.CreateGround('ground1', 10, 10, 2, scene, false);
+            var ground = BABYLON.Mesh.CreateGround('ground1', 1000, 1000, 2, scene, false);
+            GroundMaterial.addMaterial(ground, scene);
+
             ground.checkCollisions = true;
             var wall = BABYLON.MeshBuilder.CreatePlane("wall", {width: 5, height: 2}, scene);
             wall.setPositionWithLocalVector(new BABYLON.Vector3(10, 0, 5));
