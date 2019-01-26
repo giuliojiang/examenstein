@@ -23,7 +23,7 @@ function BuildWall(x1, z1, x2, z2, scene){
     }
 
     wall.material = wallMaterial;
-
+    wall.checkCollisions = true;
 }
 
 export class Render {
