@@ -71,7 +71,7 @@ export class Render {
         var textblock = new GUI.TextBlock();
         textblock.text = "HP: "+player.hp.toString();
         textblock.fontSize = 24;
-        textblock.top = -100;
+        textblock.top = -50;
         textblock.color = "white";
         textblock.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
         advancedTexture.addControl(textblock);
