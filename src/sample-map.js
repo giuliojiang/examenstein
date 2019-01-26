@@ -2,7 +2,7 @@
 // Ground: {x: ..., z: ..., w: ..., h: ...}
 // Door: like wall with 'isOpen' attr, false bz default
 
-var margin = 1;
+var margin = 0.5;
 
 class SimpleMap {
     constructor() {
@@ -31,13 +31,64 @@ class SimpleMap {
         this.doors = [];
     }
 
+    isValidPositionRoomGeneral(x, z, left, right, bottom, top) {
+        return (left + margin <= x && x <= right - margin)
+            && (bottom + margin <= z && z <= top - margin);
+    }
+
     isValidPositionRoom0(x, z) {
-        return (-5 + margin <= x && x <= 5 - margin)
-            && (-5 + margin <= z && z <= 5 - margin);
+        return this.isValidPositionRoomGeneral(x, z, -5, 5, -5, 5);
+    }
+
+    isValidPositionRoom1(x, z) {
+        // left: -5
+        // right: 5
+        // top: 35
+        // bottom: 5
+        return this.isValidPositionRoomGeneral(x, z, -5, 5, 5, 35);
+    }
+
+    isValidPositionRoom2(x, z) {
+        // left: 5
+        // right: 15
+        // bottom: -5
+        // top: 35
+        return this.isValidPositionRoomGeneral(x, z, 5, 15, -5, 35);
+    }
+
+    isValidPositionDoor0(x, z) {
+        // TODO check if door is open
+        // left: -2
+        // right: -1
+        // bottom: 4
+        // top: 6
+        return this.isValidPositionRoomGeneral(x, z, -2.5, -0.5, 4, 6);
+    }
+
+    isValidPositionDoor1(x, z) {
+        // left: 4
+        // right: 6
+        // bottom: 31
+        // top: 32
+        return this.isValidPositionRoomGeneral(x, z, 4, 6, 30.5, 32.5);
+    }
+
+    isValidPositionDoor2(x, z) {
+        // left: 4
+        // right: 6
+        // bottom: -2
+        // top: -1
+        return this.isValidPositionRoomGeneral(x, z, 4, 6, -2.5, -0.5);
     }
 
     isValidPosition(x, z) {
-        return this.isValidPositionRoom0(x, z);
+        return this.isValidPositionRoom0(x, z)
+            || this.isValidPositionRoom1(x, z)
+            || this.isValidPositionRoom2(x, z)
+            || this.isValidPositionDoor0(x, z)
+            || this.isValidPositionDoor1(x, z)
+            || this.isValidPositionDoor2(x, z)
+        ;
     }
 
 }
