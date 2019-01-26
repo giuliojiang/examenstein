@@ -58,14 +58,17 @@ export class Render {
         // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
         var light = new BABYLON.HemisphericLight("light1",new BABYLON.Vector3(0, 1, 0),scene);
 
-        var enemy1 = new Enemy(-5, 0);
-        enemy1.setup(scene);
+        // var enemy1 = new Enemy(-5, 0);
+        // enemy1.setup(scene);
 
 
         // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
-        var ground = BABYLON.Mesh.CreateGround("ground1",1000,1000,2,scene,false);
-        GroundMaterial.addMaterial(ground, scene);
-        ground.checkCollisions = true;
+        var ground;
+        for(var ground_count = 0; ground_count < samplemap.map.grounds.length; ground_count++){
+            ground = BABYLON.Mesh.CreateGround('ground', samplemap.map.grounds[ground_count].w, samplemap.map.grounds[ground_count].h, 2, scene, false);
+            GroundMaterial.addMaterial(ground, scene);
+            ground.checkCollisions = true;
+        }
 
         var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI", true, scene);
         var textblock = new GUI.TextBlock();
@@ -77,23 +80,15 @@ export class Render {
         advancedTexture.addControl(textblock);
 
         samplemap.map;
-        BuildWall(-5, 5, 5, 5, scene);
-        BuildWall(5, 5, 5, -5, scene);
-        BuildWall(5, -5, -5, -5, scene);
-        BuildWall(-5, 5, -5, -5, scene);
-        BuildAnimatedDoor(-5, 5, -5, -5, scene);
 
-      // var ground;
-      // for(var ground_count = 0; ground_count < samplemap.map.grounds.length; ground_count++){
-      //     ground = BABYLON.Mesh.CreateGround('ground', samplemap.map.grounds[ground_count].w, samplemap.map.grounds[ground_count].h, 2, scene, false);
-      //     GroundMaterial.addMaterial(ground, scene);
-      //     ground.checkCollisions = true;
-      // }
-      //
-      // var walls;
-      // for(var wall_count = 0; wall_count < samplemap.map.grounds.length; wall_count++){
-      //     BuildWall(samplemap.map.walls[wall_count].x1, samplemap.map.walls[wall_count].y1, samplemap.map.walls[wall_count].x2, samplemap.map.walls[wall_count].y2)
-      // }
+      var walls;
+      for(var wall_count = 0; wall_count < samplemap.map.walls.length; wall_count++){
+          var x1 = samplemap.map.walls[wall_count].x1;
+          var z1 = samplemap.map.walls[wall_count].z1;
+          var x2 = samplemap.map.walls[wall_count].x2;
+          var z2 = samplemap.map.walls[wall_count].z2;
+          BuildWall(x1, z1, x2, z2, scene);
+      }
 
       // Return the created scene
       return scene;
