@@ -17,7 +17,6 @@ function BuildWall(x1, z1, x2, z2, scene){
     }
     else{
         wall_width = (z1 > z2) ? (z1 - z2) : (z2 - z1);
-        console.log(wall_width);
         wall = BABYLON.MeshBuilder.CreatePlane("wall", {width: wall_width, height: 2.5}, scene);
         wall.setPositionWithLocalVector(new BABYLON.Vector3(x1, 1.25, (z1+z2)/2));
         wall.rotation.y = Math.PI/2;
@@ -50,17 +49,22 @@ export class Render {
             // enemy1.setup(scene);
 
             // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
-            var ground = BABYLON.Mesh.CreateGround('ground1', 1000, 1000, 2, scene, false);
-            GroundMaterial.addMaterial(ground, scene);
-            ground.checkCollisions = true;
+            var ground;
+            for(var ground_count = 0; ground_count < samplemap.map.grounds.length; ground_count++){
+                ground = BABYLON.Mesh.CreateGround('ground', samplemap.map.grounds[ground_count].w, samplemap.map.grounds[ground_count].h, 2, scene, false);
+                GroundMaterial.addMaterial(ground, scene);
+                ground.checkCollisions = true;
+            }
 
-            samplemap.map;
-            BuildWall(-5,5,5,5, scene);
-            BuildWall(5,5,5,-5, scene);
-            BuildWall(5,-5,-5,-5, scene);
-            BuildWall(-5,5,-5,-5, scene);
+            var walls;
+            for(var wall_count = 0; wall_count < samplemap.map.grounds.length; wall_count++){
+                BuildWall(samplemap.map.walls[wall_count].x1, samplemap.map.walls[wall_count].y1, samplemap.map.walls[wall_count].x2, samplemap.map.walls[wall_count].y2)
+            }
 
-
+            // BuildWall(-5,5,5,5, scene);
+            // BuildWall(5,5,5,-5, scene);
+            // BuildWall(5,-5,-5,-5, scene);
+            // BuildWall(-5,5,-5,-5, scene);
 
             // Return the created scene
             return scene;
