@@ -1,42 +1,26 @@
-import * as BABYLON from "babylonjs";
-import { player } from "./camera-player";
-import { Enemy } from "./enemy";
-import { GroundMaterial } from "./ground-material";
-import * as samplemap from "./sample-map";
-import { BuildAnimatedDoor } from "./door";
+import * as BABYLON from 'babylonjs';
+import { player } from './camera-player';
+import { Enemy } from './enemy';
+import { GroundMaterial } from './ground-material';
+import { WallMaterial } from './wall-material';
+import * as samplemap from './sample-map';
 
-function BuildWall(x1, z1, x2, z2, scene) {
-  var wallMaterial = new BABYLON.StandardMaterial("wallMaterial", scene);
-  wallMaterial.diffuseColor = new BABYLON.Color3(1, 0, 1);
-  wallMaterial.backFaceCulling = false;
-  var wall, wall_width;
+function BuildWall(x1, z1, x2, z2, scene){
+    var wall, wall_width;
 
-  if (z1 - z2 == 0) {
-    wall_width = x1 > x2 ? x1 - x2 : x2 - x1;
-    wall = BABYLON.MeshBuilder.CreatePlane(
-      "wall",
-      { width: wall_width, height: 2.5 },
-      scene
-    );
-    wall.setPositionWithLocalVector(
-      new BABYLON.Vector3((x1 + x2) / 2, 1.25, z1)
-    );
-  } else {
-    wall_width = z1 > z2 ? z1 - z2 : z2 - z1;
-    console.log(wall_width);
-    wall = BABYLON.MeshBuilder.CreatePlane(
-      "wall",
-      { width: wall_width, height: 2.5 },
-      scene
-    );
-    wall.setPositionWithLocalVector(
-      new BABYLON.Vector3(x1, 1.25, (z1 + z2) / 2)
-    );
-    wall.rotation.y = Math.PI / 2;
-  }
-
-  wall.material = wallMaterial;
-  wall.checkCollisions = true;
+    if ((z1 - z2) == 0){
+        wall_width = (x1 > x2) ? (x1 - x2) : (x2 - x1);
+        wall = BABYLON.MeshBuilder.CreatePlane("wall", {width: wall_width, height: 2.5}, scene);
+        wall.setPositionWithLocalVector(new BABYLON.Vector3((x1+x2)/2, 1.25, z1));
+    }
+    else{
+        wall_width = (z1 > z2) ? (z1 - z2) : (z2 - z1);
+        wall = BABYLON.MeshBuilder.CreatePlane("wall", {width: wall_width, height: 2.5}, scene);
+        wall.setPositionWithLocalVector(new BABYLON.Vector3(x1, 1.25, (z1+z2)/2));
+        wall.rotation.y = Math.PI/2;
+    }
+    WallMaterial.addMaterial(wall, scene);
+    wall.checkCollisions = true;
 }
 
 export class Render {
@@ -86,6 +70,19 @@ export class Render {
       BuildWall(5, -5, -5, -5, scene);
       BuildWall(-5, 5, -5, -5, scene);
       BuildAnimatedDoor(-5, 5, -5, -5, scene);
+
+      // var ground;
+      // for(var ground_count = 0; ground_count < samplemap.map.grounds.length; ground_count++){
+      //     ground = BABYLON.Mesh.CreateGround('ground', samplemap.map.grounds[ground_count].w, samplemap.map.grounds[ground_count].h, 2, scene, false);
+      //     GroundMaterial.addMaterial(ground, scene);
+      //     ground.checkCollisions = true;
+      // }
+      //
+      // var walls;
+      // for(var wall_count = 0; wall_count < samplemap.map.grounds.length; wall_count++){
+      //     BuildWall(samplemap.map.walls[wall_count].x1, samplemap.map.walls[wall_count].y1, samplemap.map.walls[wall_count].x2, samplemap.map.walls[wall_count].y2)
+      // }
+
 
       // Return the created scene
       return scene;
