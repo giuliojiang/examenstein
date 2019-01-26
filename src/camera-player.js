@@ -11,7 +11,7 @@ class CameraPlayer {
         // Create a FreeCamera, and set its position to {x: 0, y: 5, z: -10}
         var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(5, 1, 0), scene);
         // Target the camera to scene origin
-        camera.setTarget(new BABYLON.Vector3(1, 0, 0));
+        camera.setTarget(new BABYLON.Vector3(1, 1, 0));
         // Attach the camera to the canvas
         camera.attachControl(canvas, true);
 
@@ -24,7 +24,10 @@ class CameraPlayer {
                 this._keys = [];
                 this.keysLeft = [68];
                 this.keysRight = [65];
+                this.keysForward = [87];
+                this.keysBack = [83];
                 this.sensibility = 0.01;
+                this.moveSpeed = 0.1;
         }
 
         // Hooking keyboard events
@@ -34,7 +37,10 @@ class CameraPlayer {
                 element.tabIndex = 1;
                 this._onKeyDown = function (evt) {
                     if (_this.keysLeft.indexOf(evt.keyCode) !== -1 ||
-                        _this.keysRight.indexOf(evt.keyCode) !== -1) {
+                        _this.keysRight.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysForward.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysBack.indexOf(evt.keyCode) !== -1) 
+                    {
                         var index = _this._keys.indexOf(evt.keyCode);
                         if (index === -1) {
                             _this._keys.push(evt.keyCode);
@@ -46,7 +52,10 @@ class CameraPlayer {
                 };
                 this._onKeyUp = function (evt) {
                     if (_this.keysLeft.indexOf(evt.keyCode) !== -1 ||
-                        _this.keysRight.indexOf(evt.keyCode) !== -1) {
+                        _this.keysRight.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysForward.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysBack.indexOf(evt.keyCode) !== -1
+                        ) {
                         var index = _this._keys.indexOf(evt.keyCode);
                         if (index >= 0) {
                             _this._keys.splice(index, 1);
@@ -91,6 +100,12 @@ class CameraPlayer {
                     }
                     else if (this.keysRight.indexOf(keyCode) !== -1) {
                         camera.cameraRotation.y -= this.sensibility;
+                    }
+                    else if (this.keysForward.indexOf(keyCode) !== -1) {
+                        camera.position.addInPlace(camera.getDirection(BABYLON.Axis.Z).scale(this.moveSpeed));
+                    }
+                    else if (this.keysBack.indexOf(keyCode) !== -1) {
+                        camera.position.addInPlace(camera.getDirection(BABYLON.Axis.Z).scale(-this.moveSpeed));
                     }
                 }
             }
