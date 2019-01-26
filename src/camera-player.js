@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs';
+import { WeaponFire } from './weapon-fire';
 
 class CameraPlayer {
 
@@ -53,6 +54,7 @@ class CameraPlayer {
                             evt.preventDefault();
                         }
                     }
+                    WeaponFire.checkFire(evt);
                 };
                 this._onKeyUp = function (evt) {
                     if (_this.keysLeft.indexOf(evt.keyCode) !== -1 ||
