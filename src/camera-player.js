@@ -14,13 +14,13 @@ class CameraPlayer {
         camera.setTarget(new BABYLON.Vector3(1, 1, 0));
         // Attach the camera to the canvas
         camera.attachControl(canvas, true);
-
         camera.inertia = 0;
-
         // Let's remove default keyboard:
         camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
         camera.inputs.remove(camera.inputs.attached.mouse);
-
+        camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
+        camera.checkCollisions = true;
+        camera.applyGravity = true;
         var cameraPlayer = this;
 
         // Create our own manager:

@@ -12,6 +12,8 @@ export class Render {
         var createScene = function () {
             // Create a basic BJS Scene object
             var scene = new BABYLON.Scene(engine);
+            scene.collisionsEnabled = true;
+            scene.gravity = new BABYLON.Vector3(0, -9.81, 0);
 
             // setup player and camera
             player.setup(scene);
@@ -22,6 +24,7 @@ export class Render {
             enemy1.setup(scene);
             // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
             var ground = BABYLON.Mesh.CreateGround('ground1', 10, 10, 2, scene, false);
+            ground.checkCollisions = true;
             var wall = BABYLON.MeshBuilder.CreatePlane("wall", {width: 5, height: 2}, scene);
             wall.setPositionWithLocalVector(new BABYLON.Vector3(10, 0, 5));
             // Return the created scene

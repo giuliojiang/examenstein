@@ -14,5 +14,6 @@ export class Enemy {
         boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
         box.material = boxMaterial;
         box.setPositionWithLocalVector(new BABYLON.Vector3(this.x, this.y, this.z));
+        box.checkCollisions = true;
     }
 }
