@@ -2,12 +2,10 @@ import * as BABYLON from 'babylonjs';
 import { player } from './camera-player';
 import { Enemy } from './enemy';
 import { GroundMaterial } from './ground-material';
+import { WallMaterial } from './wall-material';
 import * as samplemap from './sample-map';
 
 function BuildWall(x1, z1, x2, z2, scene){
-    var wallMaterial = new BABYLON.StandardMaterial("wallMaterial", scene);
-    wallMaterial.diffuseColor = new BABYLON.Color3(1,0,1);
-    wallMaterial.backFaceCulling = false;
     var wall, wall_width;
 
     if ((z1 - z2) == 0){
@@ -21,8 +19,7 @@ function BuildWall(x1, z1, x2, z2, scene){
         wall.setPositionWithLocalVector(new BABYLON.Vector3(x1, 1.25, (z1+z2)/2));
         wall.rotation.y = Math.PI/2;
     }
-
-    wall.material = wallMaterial;
+    WallMaterial.addMaterial(wall, scene);
     wall.checkCollisions = true;
 }
 
@@ -61,10 +58,10 @@ export class Render {
                 BuildWall(samplemap.map.walls[wall_count].x1, samplemap.map.walls[wall_count].y1, samplemap.map.walls[wall_count].x2, samplemap.map.walls[wall_count].y2)
             }
 
-            // BuildWall(-5,5,5,5, scene);
-            // BuildWall(5,5,5,-5, scene);
-            // BuildWall(5,-5,-5,-5, scene);
-            // BuildWall(-5,5,-5,-5, scene);
+            BuildWall(-5,5,5,5, scene);
+            BuildWall(5,5,5,-5, scene);
+            BuildWall(5,-5,-5,-5, scene);
+            BuildWall(-5,5,-5,-5, scene);
 
             // Return the created scene
             return scene;
