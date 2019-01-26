@@ -1,5 +1,6 @@
 import * as BABYLON from "babylonjs";
 import { WeaponFire } from "./weapon-fire";
+import * as sampleMap from "./sample-map";
 
 class CameraPlayer {
   constructor() {
@@ -130,9 +131,15 @@ class CameraPlayer {
             );
           }
 
-          // Update camera positions
-          cameraPlayer.x = camera.position.x;
-          cameraPlayer.z = camera.position.z;
+          // Collision detection and position update
+          let map = sampleMap.map;
+          if (map.isValidPosition(camera.position.x, camera.position.z)) {
+              cameraPlayer.x = camera.position.x;
+              cameraPlayer.z = camera.position.z;
+          } else {
+              camera.position.x = cameraPlayer.x;
+              camera.position.z = cameraPlayer.z;
+          }
         }
       }
     };
