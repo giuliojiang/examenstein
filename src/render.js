@@ -4,7 +4,7 @@ import { Enemy } from "./enemy";
 import { GroundMaterial } from "./ground-material";
 import { WallMaterial } from "./wall-material";
 import * as samplemap from "./sample-map";
-import { BuildAnimatedDoor } from "./door";
+import { Door } from "./door";
 
 function BuildWall(x1, z1, x2, z2, scene) {
   var wall, wall_width;
@@ -81,7 +81,7 @@ export class Render {
       BuildWall(5, 5, 5, -5, scene);
       BuildWall(5, -5, -5, -5, scene);
       BuildWall(-5, 5, -5, -5, scene);
-      BuildAnimatedDoor(-5, 5, -5, -5, scene);
+      Door.buildDoor(-5, 5, -5, -5, scene);
 
       // var ground;
       // for(var ground_count = 0; ground_count < samplemap.map.grounds.length; ground_count++){
