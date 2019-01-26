@@ -1,60 +1,82 @@
-import * as BABYLON from "babylonjs";
+import * as BABYLON from 'babylonjs';
+import { WeaponFire } from './weapon-fire';
 
 class CameraPlayer {
-  constructor() {
-    this.x = 0;
-    this.z = 0;
-  }
 
-  setup(scene) {
-    // Create a FreeCamera, and set its position to {x: 0, y: 5, z: -10}
-    var camera = new BABYLON.FreeCamera(
-      "camera1",
-      new BABYLON.Vector3(5, 1, 0),
-      scene
-    );
-    // Target the camera to scene origin
-    camera.setTarget(new BABYLON.Vector3(1, 1, 0));
-    // Attach the camera to the canvas
-    camera.attachControl(canvas, true);
-    camera.inertia = 0;
-    // Let's remove default keyboard:
-    camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
-    camera.inputs.remove(camera.inputs.attached.mouse);
-    camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
-    camera.checkCollisions = true;
-    camera.applyGravity = true;
-    var cameraPlayer = this;
+    constructor() {
+        this.x = 0;
+        this.z = 0;
+    }
 
-    // Create our own manager:
-    var FreeCameraKeyboardRotateInput = function() {
-      this._keys = [];
-      this.keysLeft = [68, 39];
-      this.keysRight = [65, 37];
-      this.keysForward = [87, 38];
-      this.keysBack = [83, 40];
-      this.sensibility = 0.03;
-      this.moveSpeed = 0.1;
-    };
+    setup(scene) {
+        // Create a FreeCamera, and set its position to {x: 0, y: 5, z: -10}
+        var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(5, 1, 0), scene);
+        // Target the camera to scene origin
+        camera.setTarget(new BABYLON.Vector3(1, 1, 0));
+        // Attach the camera to the canvas
+        camera.attachControl(canvas, true);
+        camera.inertia = 0;
+        // Let's remove default keyboard:
+        camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
+        camera.inputs.remove(camera.inputs.attached.mouse);
+        camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
+        camera.checkCollisions = true;
+        camera.applyGravity = true;
+        var cameraPlayer = this;
 
-    // Hooking keyboard events
-    FreeCameraKeyboardRotateInput.prototype.attachControl = function(
-      element,
-      noPreventDefault
-    ) {
-      var _this = this;
-      if (!this._onKeyDown) {
-        element.tabIndex = 1;
-        this._onKeyDown = function(evt) {
-          if (
-            _this.keysLeft.indexOf(evt.keyCode) !== -1 ||
-            _this.keysRight.indexOf(evt.keyCode) !== -1 ||
-            _this.keysForward.indexOf(evt.keyCode) !== -1 ||
-            _this.keysBack.indexOf(evt.keyCode) !== -1
-          ) {
-            var index = _this._keys.indexOf(evt.keyCode);
-            if (index === -1) {
-              _this._keys.push(evt.keyCode);
+        // Create our own manager:
+        var FreeCameraKeyboardRotateInput = function () {
+                this._keys = [];
+                this.keysLeft = [68, 39];
+                this.keysRight = [65, 37];
+                this.keysForward = [87, 38];
+                this.keysBack = [83, 40];
+                this.sensibility = 0.03;
+                this.moveSpeed = 0.1;
+        }
+
+        // Hooking keyboard events
+        FreeCameraKeyboardRotateInput.prototype.attachControl = function (element, noPreventDefault) {
+            var _this = this;
+            if (!this._onKeyDown) {
+                element.tabIndex = 1;
+                this._onKeyDown = function (evt) {
+                    if (_this.keysLeft.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysRight.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysForward.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysBack.indexOf(evt.keyCode) !== -1) 
+                    {
+                        var index = _this._keys.indexOf(evt.keyCode);
+                        if (index === -1) {
+                            _this._keys.push(evt.keyCode);
+                        }
+                        if (!noPreventDefault) {
+                            evt.preventDefault();
+                        }
+                    }
+                    WeaponFire.checkFire(evt);
+                };
+                this._onKeyUp = function (evt) {
+                    if (_this.keysLeft.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysRight.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysForward.indexOf(evt.keyCode) !== -1 ||
+                        _this.keysBack.indexOf(evt.keyCode) !== -1
+                        ) {
+                        var index = _this._keys.indexOf(evt.keyCode);
+                        if (index >= 0) {
+                            _this._keys.splice(index, 1);
+                        }
+                        if (!noPreventDefault) {
+                            evt.preventDefault();
+                        }
+                    }
+                };
+
+                element.addEventListener("keydown", this._onKeyDown, false);
+                element.addEventListener("keyup", this._onKeyUp, false);
+                BABYLON.Tools.RegisterTopRootEvents([
+                    { name: "blur", handler: this._onLostFocus }
+                ]);
             }
             if (!noPreventDefault) {
               evt.preventDefault();
