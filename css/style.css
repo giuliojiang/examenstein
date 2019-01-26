@@ -81,3 +81,7 @@ div {
 .handgun {
     height: 50vh;
 }
+
+.handgun-hidden {
+    display: none;
+}
