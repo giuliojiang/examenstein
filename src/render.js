@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs';
+import { player } from './camera-player';
 
 function BuildWall(x1, z1, x2, z2){
     var wall;
@@ -28,12 +29,10 @@ export class Render {
         var createScene = function () {
             // Create a basic BJS Scene object
             var scene = new BABYLON.Scene(engine);
-            // Create a FreeCamera, and set its position to {x: 0, y: 5, z: -10}
-            var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, -10), scene);
-            // Target the camera to scene origin
-            camera.setTarget(BABYLON.Vector3.Zero());
-            // Attach the camera to the canvas
-            camera.attachControl(canvas, false);
+
+            // setup player and camera
+            player.setup(scene);
+            
             // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
             var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
 
