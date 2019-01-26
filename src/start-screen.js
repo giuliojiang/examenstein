@@ -18,7 +18,6 @@ export class StartScreen {
     }
 
     static isStarted() {
-        return false;
         return started;
     }
 

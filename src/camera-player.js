@@ -16,6 +16,7 @@ class CameraPlayer {
       new BABYLON.Vector3(5, 1, 0),
       scene
     );
+    camera.minZ = 0.01;
     // Target the camera to scene origin
     camera.setTarget(new BABYLON.Vector3(1, 1, 0));
     // Attach the camera to the canvas
