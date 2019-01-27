@@ -1,6 +1,7 @@
 import { camera } from './camera-player';
 import { SoundEngine } from './sound';
 import { allEnemis } from './enemy';
+import { map } from './sample-map';
 
 export class WeaponFire {
 
@@ -35,8 +36,12 @@ export class WeaponFire {
                 console.log("hit the fucking enemy");
                 // hit.pickedMesh.position.x += dir.x * 1;
                 // hit.pickedMesh.position.z += dir.z * 1;
-                hitEnemy.position.x += dir.x * 1;
-                hitEnemy.position.z += dir.z * 1;
+                let newX = hitEnemy.position.x + dir.x * 1;
+                let newZ = hitEnemy.position.z + dir.z * 1;
+                if (map.isValidPosition(newX, newZ)) {
+                    hitEnemy.position.x = newX;
+                    hitEnemy.position.z = newZ;
+                }
                 hitEnemy.hitCount += 1;
                 console.log("Hit count: "+String(hitEnemy.hitCount));
                 didHit = true;
