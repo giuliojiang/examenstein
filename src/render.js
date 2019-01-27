@@ -35,7 +35,7 @@ function BuildWall(x1, z1, x2, z2, scene) {
   }
   WallMaterial.addMaterial(wall, scene, wall_width);
   wall.checkCollisions = true;
-  wall.isPickable = false;
+  wall.isPickable = true;
 }
 
 export class Render {

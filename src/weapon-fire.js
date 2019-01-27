@@ -27,7 +27,7 @@ export class WeaponFire {
             var hit = scene.pickWithRay(ray);
 
             // console.log(distance);
-            if (hit.pickedMesh) {
+            if (hit.pickedMesh == enemy) {
                 console.log("hit the fucking enemy");
                 // hit.pickedMesh.position.x += dir.x * 1;
                 // hit.pickedMesh.position.z += dir.z * 1;
