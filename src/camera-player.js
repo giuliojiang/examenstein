@@ -2,6 +2,8 @@ import * as BABYLON from "babylonjs";
 import { WeaponFire } from "./weapon-fire";
 import * as sampleMap from "./sample-map";
 
+var camera;
+
 class CameraPlayer {
   constructor() {
     this.x = 0;
@@ -11,7 +13,7 @@ class CameraPlayer {
 
   setup(scene) {
     // Create a FreeCamera, and set its position to {x: 0, y: 5, z: -10}
-    var camera = new BABYLON.FreeCamera(
+    camera = new BABYLON.FreeCamera(
       "camera1",
       new BABYLON.Vector3(5, 1, 0),
       scene
@@ -31,7 +33,7 @@ class CameraPlayer {
     var cameraPlayer = this;
 
     // Create our own manager:
-    var FreeCameraKeyboardRotateInput = function() {
+    var FreeCameraKeyboardRotateInput = function () {
       this._keys = [];
       this.keysLeft = [68, 39];
       this.keysRight = [65, 37];
@@ -42,14 +44,14 @@ class CameraPlayer {
     };
 
     // Hooking keyboard events
-    FreeCameraKeyboardRotateInput.prototype.attachControl = function(
+    FreeCameraKeyboardRotateInput.prototype.attachControl = function (
       element,
       noPreventDefault
     ) {
       var _this = this;
       if (!this._onKeyDown) {
         element.tabIndex = 1;
-        this._onKeyDown = function(evt) {
+        this._onKeyDown = function (evt) {
           if (
             _this.keysLeft.indexOf(evt.keyCode) !== -1 ||
             _this.keysRight.indexOf(evt.keyCode) !== -1 ||
@@ -64,9 +66,9 @@ class CameraPlayer {
               evt.preventDefault();
             }
           }
-          WeaponFire.checkFire(evt);
+          WeaponFire.checkFire(evt, scene);
         };
-        this._onKeyUp = function(evt) {
+        this._onKeyUp = function (evt) {
           if (
             _this.keysLeft.indexOf(evt.keyCode) !== -1 ||
             _this.keysRight.indexOf(evt.keyCode) !== -1 ||
@@ -92,7 +94,7 @@ class CameraPlayer {
     };
 
     // Unhook
-    FreeCameraKeyboardRotateInput.prototype.detachControl = function(element) {
+    FreeCameraKeyboardRotateInput.prototype.detachControl = function (element) {
       if (this._onKeyDown) {
         element.removeEventListener("keydown", this._onKeyDown);
         element.removeEventListener("keyup", this._onKeyUp);
@@ -106,7 +108,7 @@ class CameraPlayer {
     };
 
     // This function is called by the system on every frame
-    FreeCameraKeyboardRotateInput.prototype.checkInputs = function() {
+    FreeCameraKeyboardRotateInput.prototype.checkInputs = function () {
       if (this._onKeyDown) {
         var camera = this.camera;
 
@@ -144,13 +146,13 @@ class CameraPlayer {
         }
       }
     };
-    FreeCameraKeyboardRotateInput.prototype.getTypeName = function() {
+    FreeCameraKeyboardRotateInput.prototype.getTypeName = function () {
       return "FreeCameraKeyboardRotateInput";
     };
-    FreeCameraKeyboardRotateInput.prototype._onLostFocus = function(e) {
+    FreeCameraKeyboardRotateInput.prototype._onLostFocus = function (e) {
       this._keys = [];
     };
-    FreeCameraKeyboardRotateInput.prototype.getSimpleName = function() {
+    FreeCameraKeyboardRotateInput.prototype.getSimpleName = function () {
       return "keyboardRotate";
     };
 
@@ -161,4 +163,4 @@ class CameraPlayer {
 
 var player = new CameraPlayer();
 
-export { player };
+export { player, camera };
