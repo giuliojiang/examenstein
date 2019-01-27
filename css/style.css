@@ -85,3 +85,23 @@ div {
 .handgun-hidden {
     display: none;
 }
+
+.timer-positioner {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.timer-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.timer {
+    font-size: 30px;
+    color: white;
+}

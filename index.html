@@ -10,6 +10,7 @@
         <!-- Main render canvas -->
         <div class="container">
             <canvas id="canvas" class="render-canvas"></canvas>
+            <!-- Handgun -->
             <div class="handgun-positioner">
                 <div class="handgun-container">
                     <img class="handgun" src="/res/handgun.png" data-handgun-base>
@@ -18,11 +19,18 @@
                     <img class="handgun handgun-hidden" src="/res/handgun_firing.png" data-handgun-firing>
                 </div>
             </div>
+            <!-- Timer -->
+            <div class="timer-positioner">
+                <div class="timer-container">
+                    <div class="timer" data-timer-text></div>
+                </div>
+            </div>
         </div>
         <!-- Game over screen -->
         <div class="container level-back" data-game-over>
             <div class="full-flex">
                 <div class="game-over">GAME OVER</div>
+                <div class="game-over" data-game-over-reason></div>
                 <div class="new-game" data-new-game-button>NEW GAME</div>
             </div>
         </div>

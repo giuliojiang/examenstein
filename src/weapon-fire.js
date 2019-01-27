@@ -1,5 +1,5 @@
-import * as cameraPlayer from './camera-player';
-import { Enemy } from './enemy';
+import { camera } from './camera-player';
+import { SoundEngine } from './sound';
 
 export class WeaponFire {
 
@@ -16,7 +16,6 @@ export class WeaponFire {
             // let c = (p1.z - p0.z) / (p1.x - p0.x) * (p1.x + p1.z);
 
             // let distance = Math.abs(a * enemy.position.x + b * enemy.position.z + c)/ Math.sqrt(a * a + b * b);
-            let camera = cameraPlayer.camera;
 
             var pos = camera.position;
             var forward = new BABYLON.Vector3(0,0,1);
@@ -43,6 +42,9 @@ export class WeaponFire {
         }
 
         if (evt.keyCode == 32) {
+            // Play sound
+            SoundEngine.play("/res/gunshot.ogg");
+
             // SPACE
             let handgunBase = document.querySelector("[data-handgun-base]");
             let handgunFiring = document.querySelector("[data-handgun-firing]");
