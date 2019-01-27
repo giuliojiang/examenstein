@@ -59,7 +59,7 @@ export class Enemy {
                 if (new BABYLON.Vector3(player.x - exam.position.x, 0, player.z - exam.position.z).length() < 2) {
                     player.hp -= 25;
                     if(player.hp <= 0) {
-                        GameOver.showGameOver();
+                        // GameOver.showGameOver();
                     }
                 }
             }
