@@ -1,4 +1,5 @@
 import { camera } from './camera-player';
+import { SoundEngine } from './sound';
 
 export class WeaponFire {
 
@@ -39,6 +40,9 @@ export class WeaponFire {
         }
 
         if (evt.keyCode == 32) {
+            // Play sound
+            SoundEngine.play("/res/gunshot.ogg");
+
             // SPACE
             let handgunBase = document.querySelector("[data-handgun-base]");
             let handgunFiring = document.querySelector("[data-handgun-firing]");
