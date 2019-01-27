@@ -71,7 +71,7 @@ class CameraPlayer {
           }
           if (WeaponFire.checkFire(evt, scene) == true) {
             cameraPlayer.score = enemy1.tryToDie();
-            if()
+            // if()
             console.log("Score: " + String(cameraPlayer.score));
             let scoreElem = document.querySelector("[data-score-text]");
             scoreElem.innerText = `Score: ${cameraPlayer.score}`;
