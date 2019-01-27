@@ -5,7 +5,7 @@ export class VictoryScreen {
         StartScreen.stopGame();
 
         let scoreElem = document.querySelector("[data-victory-average-score]");
-        scoreElem.innerText = `Average score: ${averageScore.tofixed(2)}`;
+        scoreElem.innerText = `Average score: ${averageScore.toFixed(2)}`;
 
         let button = document.querySelector("[data-victory-new-game-button]");
         button.addEventListener("click", (e) => {
