@@ -8,7 +8,9 @@ class CameraPlayer {
   constructor() {
     this.x = 0;
     this.z = 0;
-    this.hp = 100;
+    // this.hp = 100;
+    // this.hpText = "100";
+    this.score = 0;
   }
 
   setup(scene) {
@@ -66,7 +68,10 @@ class CameraPlayer {
               evt.preventDefault();
             }
           }
-          WeaponFire.checkFire(evt, scene);
+          if(WeaponFire.checkFire(evt, scene) == true) {
+            cameraPlayer.score += 20;
+            console.log("Score: "+ String(cameraPlayer.score));
+          }
         };
         this._onKeyUp = function (evt) {
           if (

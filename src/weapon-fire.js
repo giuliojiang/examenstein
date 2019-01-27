@@ -1,8 +1,11 @@
-import { camera } from './camera-player';
+import * as cameraPlayer from './camera-player';
+import { Enemy } from './enemy';
 
 export class WeaponFire {
 
     static checkFire(evt, scene) {
+        
+        var didHit = false;
 
         var shoot = (scene) => {
             let enemy = scene.getMeshByName("exam");
@@ -13,7 +16,8 @@ export class WeaponFire {
             // let c = (p1.z - p0.z) / (p1.x - p0.x) * (p1.x + p1.z);
 
             // let distance = Math.abs(a * enemy.position.x + b * enemy.position.z + c)/ Math.sqrt(a * a + b * b);
-            
+            let camera = cameraPlayer.camera;
+
             var pos = camera.position;
             var forward = new BABYLON.Vector3(0,0,1);
             var m = camera.getWorldMatrix();
@@ -33,8 +37,8 @@ export class WeaponFire {
                 // hit.pickedMesh.position.z += dir.z * 1;
                 enemy.position.x += dir.x * 1;
                 enemy.position.z += dir.z * 1;
+                didHit = true;
                 
-
             }
         }
 
@@ -51,5 +55,8 @@ export class WeaponFire {
                 handgunFiring.classList.add("handgun-hidden");
             }, 100);
         }
+
+
+        return didHit;
     }
 }
