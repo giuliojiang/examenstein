@@ -80,6 +80,7 @@ export class Render {
 
             if (remainingTime < 1) {
               clearInterval(timerHandle);
+              GameOver.setGameOverReason("You could not beat the exams in time");
               GameOver.showGameOver();
             }
 

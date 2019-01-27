@@ -1,10 +1,20 @@
 import { StartScreen } from "./start-screen";
 
+let reason = "An exam got you!";
+
 export class GameOver {
+
+    static setGameOverReason(r) {
+        reason = r;
+    }
+
     static showGameOver() {
         let elem = document.querySelector("[data-game-over]");
         elem.classList.remove("level-back");
         elem.classList.add("level-front");
+
+        let reasonElem = document.querySelector("[data-game-over-reason]");
+        reasonElem.innerText = reason;
 
         StartScreen.stopGame();
     }
