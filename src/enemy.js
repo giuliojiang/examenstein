@@ -1,25 +1,25 @@
-import * as BABYLON from 'babylonjs';
-import * as cameraPlayer from './camera-player';
+import * as BABYLON from "babylonjs";
+import * as cameraPlayer from "./camera-player";
 import * as sampleMap from "./sample-map";
 import { StartScreen } from './start-screen';
 
 let allEnemis = [];
+let enemyObjects = [];
 let enemyNumber = 0;
 
 class Enemy {
 
-    constructor(x, z, scene) {
+    constructor(x, z, scene, decreaseRate) {
         enemyNumber += 1;
 
+        this.decreaseRate = decreaseRate;
+        this.creationTime = Date.now();
         this.hitCount = 0; //goes to 4, exam dies at 5
 
         var exam = BABYLON.MeshBuilder.CreatePlane("exam" + enemyNumber, { width: 1.5, height: 2}, scene);     
 
         var examMaterial = new BABYLON.StandardMaterial("material" + enemyNumber, scene)
         examMaterial.emissiveColor = new BABYLON.Color3(1, 1, 1);
-
-        // examMaterial.diffuseTexture = dynamicTexture;
-        examMaterial.diffuseTexture = new BABYLON.Texture("/res/exam0.jpeg", scene)
 
         exam.material = examMaterial;
 
@@ -31,6 +31,24 @@ class Enemy {
         exam.position.y = 1;
 
         allEnemis.push(exam);
+        enemyObjects.push(this);
+    }
+
+    calculateScore() {
+        // 10 is the mark we detract every decreaseRate time elapsed
+        return Math.max(
+          100 - Math.ceil(Date.now() - this.creationTime) / 100 / this.decreaseRate,
+          0
+        );
+    }
+
+    tryToDie() {
+        if (this.hitCount < 4) {
+          this.hitCount++;
+          return -1;
+        } else {
+          return this.calculateScore();
+        }
     }
 
     static setupMovements(scene) {
@@ -58,10 +76,9 @@ class Enemy {
                     }
                 }
             }
-
         });
     }
 }
 
 
-export {allEnemis, Enemy}
+export {allEnemis, Enemy, enemyObjects}
