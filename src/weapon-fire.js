@@ -36,6 +36,8 @@ export class WeaponFire {
                 // hit.pickedMesh.position.z += dir.z * 1;
                 enemy.position.x += dir.x * 1;
                 enemy.position.z += dir.z * 1;
+                enemy.hitCount += 1;
+                console.log("Hit count: "+String(enemy.hitCount));
                 didHit = true;
                 
             }
