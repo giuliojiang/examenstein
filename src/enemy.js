@@ -14,6 +14,7 @@ class Enemy {
     this.decreaseRate = decreaseRate;
     this.creationTime = Date.now();
     this.hitCount = 0; //goes to 4, exam dies at 5
+    this.maxCOunt = Math.floor(Math.random() * 5);
 
     var exam = BABYLON.MeshBuilder.CreatePlane(
       "exam" + enemyNumber,
@@ -52,7 +53,7 @@ class Enemy {
   }
 
   tryToDie() {
-    if (this.hitCount < 4) {
+    if (this.hitCount < this.maxCOunt) {
       this.hitCount++;
       return -1;
     } else {
