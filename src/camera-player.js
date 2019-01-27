@@ -72,9 +72,17 @@ class CameraPlayer {
           }
           if (WeaponFire.checkFire(evt, scene) == true) {
             for (let enemy of enemyObjects) {
-              cameraPlayer.score = enemy.tryToDie();
+              console.log("camera-player.js: enemy", enemy);
+
+              var tempScore = enemy.theMesh.shot ? enemy.tryToDie() : -1;
+              console.log("camera-player.js: tempScore", tempScore);
+
+              if (tempScore != -1) {
+                cameraPlayer.score = tempScore;
+                enemy.theMesh.dispose();
+              }
             }
-            // if()
+
             console.log("Score: " + String(cameraPlayer.score));
             let scoreElem = document.querySelector("[data-score-text]");
             scoreElem.innerText = `Score: ${cameraPlayer.score}`;
