@@ -1,6 +1,7 @@
 import * as BABYLON from "babylonjs";
 import { WeaponFire } from "./weapon-fire";
 import * as sampleMap from "./sample-map";
+import { SoundEngine } from "./sound";
 
 var camera;
 
@@ -128,10 +129,12 @@ class CameraPlayer {
             camera.position.addInPlace(
               camera.getDirection(BABYLON.Axis.Z).scale(this.moveSpeed)
             );
+            SoundEngine.playUnique("/res/footsteps.ogg");
           } else if (this.keysBack.indexOf(keyCode) !== -1) {
             camera.position.addInPlace(
               camera.getDirection(BABYLON.Axis.Z).scale(-this.moveSpeed)
             );
+            SoundEngine.playUnique("/res/footsteps.ogg");
           }
 
           // Collision detection and position update
