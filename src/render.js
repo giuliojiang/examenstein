@@ -6,6 +6,7 @@ import { GroundMaterial } from "./ground-material";
 import { WallMaterial } from "./wall-material";
 import * as samplemap from "./sample-map";
 import { BuildAnimatedDoor } from "./door";
+import { GameOver } from './game-over';
 
 function BuildWall(x1, z1, x2, z2, scene) {
   var wall, wall_width;
@@ -73,12 +74,29 @@ export class Render {
 
         var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI", true, scene);
         var textblock = new GUI.TextBlock();
-        textblock.text = "HP: "+player.hp.toString();
-        textblock.fontSize = 24;
-        textblock.top = -50;
+        var time = 60;
+        textblock.text = "Timer: "+new String(time);
+        textblock.fontSize = 36;
+        // textblock.horizontalAlignment = GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+        // textblock.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP;
+        textblock.top = 350;
+        textblock.left =-400;
         textblock.color = "white";
-        textblock.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
         advancedTexture.addControl(textblock);
+        // textblock.onTextChangedObservable.add( function() {
+        //     textblock.text = "HP: "+player.hpText;
+        // })
+
+        var timeHandle = window.setInterval(() => {
+          time--;
+          textblock.text = "Timer: "+new String(time);
+
+          if(time == 0) {
+            window.clearInterval(timeHandle);
+            GameOver.showGameOver();
+          }
+        }, 1000);
+        
 
         samplemap.map;
 
