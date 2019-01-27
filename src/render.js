@@ -7,6 +7,7 @@ import { WallMaterial } from "./wall-material";
 import * as samplemap from "./sample-map";
 import { BuildAnimatedDoor } from "./door";
 import { GameOver } from './game-over';
+import { StartScreen } from './start-screen';
 
 function BuildWall(x1, z1, x2, z2, scene) {
   var wall, wall_width;
@@ -72,31 +73,20 @@ export class Render {
             ground.checkCollisions = true;
         }
 
-        var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI", true, scene);
-        var textblock = new GUI.TextBlock();
-        var time = 60;
-        textblock.text = "Timer: "+new String(time);
-        textblock.fontSize = 36;
-        // textblock.horizontalAlignment = GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-        // textblock.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP;
-        textblock.top = 350;
-        textblock.left =-400;
-        textblock.color = "white";
-        advancedTexture.addControl(textblock);
-        // textblock.onTextChangedObservable.add( function() {
-        //     textblock.text = "HP: "+player.hpText;
-        // })
+        var remainingTime = 90;
+        let timerHandle = setInterval(() => {
+          if (StartScreen.isStarted()) {
+            remainingTime -= 1;
 
-        var timeHandle = window.setInterval(() => {
-          time--;
-          textblock.text = "Timer: "+new String(time);
+            if (remainingTime < 1) {
+              clearInterval(timerHandle);
+              GameOver.showGameOver();
+            }
 
-          if(time == 0) {
-            window.clearInterval(timeHandle);
-            GameOver.showGameOver();
+            let timerElem = document.querySelector("[data-timer-text]");
+            timerElem.innerText = `Time: ${remainingTime}`;
           }
         }, 1000);
-        
 
         samplemap.map;
 
