@@ -61,8 +61,9 @@ export class Render {
         // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
         var light = new BABYLON.HemisphericLight("light1",new BABYLON.Vector3(0, 1, 0),scene);
 
-        var enemy1 = new Enemy(-3, 0);
-        enemy1.setup(scene);
+        var enemy1 = new Enemy(-3, 0, scene);
+        var enemy2 = new Enemy(0, 15, scene);
+        Enemy.setupMovements(scene);
 
 
         // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
