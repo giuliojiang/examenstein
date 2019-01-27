@@ -5,6 +5,7 @@ import { SoundEngine } from "./sound";
 import { enemy1 } from "./render";
 import { allEnemis, enemyObjects } from "./enemy";
 var camera;
+var scores = [];
 
 class CameraPlayer {
   constructor() {
@@ -190,4 +191,4 @@ class CameraPlayer {
 
 var player = new CameraPlayer();
 
-export { player, camera };
+export { player, camera, scores };

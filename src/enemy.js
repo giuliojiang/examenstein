@@ -2,15 +2,18 @@ import * as BABYLON from "babylonjs";
 import * as cameraPlayer from "./camera-player";
 import * as sampleMap from "./sample-map";
 import { StartScreen } from './start-screen';
+import { VictoryScreen } from "./victory-screen";
 
 let allEnemis = [];
 let enemyObjects = [];
 let enemyNumber = 0;
+let aliveEnemies = 0;
 
 class Enemy {
 
     constructor(x, z, scene, decreaseRate) {
         enemyNumber += 1;
+        aliveEnemies += 1;
 
         this.decreaseRate = decreaseRate;
         this.creationTime = Date.now();
@@ -58,6 +61,16 @@ class Enemy {
 
     hideFromScreen() {
         this.theMesh.dispose();
+        aliveEnemies -= 1;
+        console.info("now are alive <><><> " + aliveEnemies);
+        if (aliveEnemis <= 0) {
+            let avgscore = 0;
+            for (let score of cameraPlayer.scores) {
+                avgscore += score;
+            }
+            avgscore /= cameraPlayer.scores.length;
+            VictoryScreen.show(avgscore);
+        }
     }
 
     static setupMovements(scene) {
