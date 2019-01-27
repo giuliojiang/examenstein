@@ -1,5 +1,6 @@
 import { camera } from './camera-player';
 import { SoundEngine } from './sound';
+import { allEnemis } from './enemy';
 
 export class WeaponFire {
 
@@ -8,14 +9,7 @@ export class WeaponFire {
         var didHit = false;
 
         var shoot = (scene) => {
-            let enemy = scene.getMeshByName("exam");
-            // let p0 = camera.getDirection(BABYLON.Axis.Z);
-            // let p1 = camera.position;
-            // let a = (p0.z - p1.z) / (p0.x - p1.x);
-            // let b = 1;
-            // let c = (p1.z - p0.z) / (p1.x - p0.x) * (p1.x + p1.z);
-
-            // let distance = Math.abs(a * enemy.position.x + b * enemy.position.z + c)/ Math.sqrt(a * a + b * b);
+            let enemies = allEnemis;
 
             var pos = camera.position;
             var forward = new BABYLON.Vector3(0,0,1);
@@ -30,14 +24,21 @@ export class WeaponFire {
             var hit = scene.pickWithRay(ray);
 
             // console.log(distance);
-            if (hit.pickedMesh == enemy) {
+            let hitEnemy = null;
+            for (let e of enemies) {
+                if (e == hit.pickedMesh) {
+                    hitEnemy = e;
+                }
+            }
+
+            if (hitEnemy != null) {
                 console.log("hit the fucking enemy");
                 // hit.pickedMesh.position.x += dir.x * 1;
                 // hit.pickedMesh.position.z += dir.z * 1;
-                enemy.position.x += dir.x * 1;
-                enemy.position.z += dir.z * 1;
-                enemy.hitCount += 1;
-                console.log("Hit count: "+String(enemy.hitCount));
+                hitEnemy.position.x += dir.x * 1;
+                hitEnemy.position.z += dir.z * 1;
+                hitEnemy.hitCount += 1;
+                console.log("Hit count: "+String(hitEnemy.hitCount));
                 didHit = true;
                 
             }
