@@ -65,7 +65,7 @@ div {
 
 .handgun-positioner {
     position: fixed;
-    bottom: 121px;
+    bottom: 0;
     width: 100%;
     pointer-events: none;
 }
@@ -106,8 +106,19 @@ div {
     color: white;
 }
 
-.infobar-positionor {
+.infobar-positioner {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.infobar {
+    width: 100vw;
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }

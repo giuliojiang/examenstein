@@ -12,11 +12,15 @@
             <canvas id="canvas" class="render-canvas"></canvas>
             <!-- Handgun -->
             <div class="handgun-positioner">
-                <div class="handgun-container">
-                    <img class="handgun" src="/res/handgun.png" data-handgun-base>
-                </div>
-                <div class="handgun-container">
-                    <img class="handgun handgun-hidden" src="/res/handgun_firing.png" data-handgun-firing>
+                <div class="bottom-container">
+                    <div class="handgun-container">
+                        <img class="handgun" src="/res/handgun.png" data-handgun-base>
+                    </div>
+                    <div class="handgun-container">
+                        <img class="handgun handgun-hidden" src="/res/handgun_firing.png" data-handgun-firing>
+                    </div>
+                    <!-- infobar -->
+                    <img class="infobar" src="/res/info-bar.png">
                 </div>
             </div>
             <!-- Timer -->
@@ -24,9 +28,6 @@
                 <div class="timer-container">
                     <div class="timer" data-timer-text></div>
                 </div>
-            </div>
-            <div class="infobar-positioner">
-                <img class="infobar" src="/res/info-bar.png" infobar></div>
             </div>
         </div>
         <!-- Game over screen -->
