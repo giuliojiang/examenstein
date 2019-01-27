@@ -90,7 +90,7 @@ class CameraPlayer {
             // if()
             console.log("Score: " + String(cameraPlayer.score));
             let scoreElem = document.querySelector("[data-score-text]");
-            scoreElem.innerText = `Last Exam Score: ${Math.floor(
+            scoreElem.innerText = `Last Exam Score: \n ${Math.floor(
               cameraPlayer.score
             )}`;
           }
