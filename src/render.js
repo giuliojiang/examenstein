@@ -102,7 +102,7 @@ class Render {
           }
 
           let timerElem = document.querySelector("[data-timer-text]");
-          timerElem.innerText = `Time: ${remainingTime}`;
+          timerElem.innerText = `Time: \n ${remainingTime}`;
         }
       }, 1000);
 

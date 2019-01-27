@@ -77,7 +77,7 @@ class CameraPlayer {
             // if()
             console.log("Score: " + String(cameraPlayer.score));
             let scoreElem = document.querySelector("[data-score-text]");
-            scoreElem.innerText = `Score: ${cameraPlayer.score}`;
+            scoreElem.innerText = `Average Score: \n ${cameraPlayer.score}`;
           }
         };
         this._onKeyUp = function(evt) {
