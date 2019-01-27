@@ -4,7 +4,9 @@ import * as sampleMap from "./sample-map";
 import { SoundEngine } from "./sound";
 import { enemy1 } from "./render";
 import { allEnemis, enemyObjects } from "./enemy";
+
 var camera;
+var scores = [];
 
 class CameraPlayer {
   constructor() {
@@ -79,13 +81,18 @@ class CameraPlayer {
 
               if (tempScore != -1) {
                 cameraPlayer.score = tempScore;
+                enemy.theMesh.shot = false;
                 enemy.theMesh.dispose();
+                scores.push(cameraPlayer.score);
+                console.log("camera-player.js: scores", scores);
               }
             }
 
             console.log("Score: " + String(cameraPlayer.score));
             let scoreElem = document.querySelector("[data-score-text]");
-            scoreElem.innerText = `Score: ${cameraPlayer.score}`;
+            scoreElem.innerText = `Last Exam Score: ${Math.floor(
+              cameraPlayer.score
+            )}`;
           }
         };
         this._onKeyUp = function(evt) {
