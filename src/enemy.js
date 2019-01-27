@@ -63,14 +63,14 @@ class Enemy {
                     
                     // Collision detection and position update
                     let map = sampleMap.map;
-                    if (map.isValidPosition(exam.position.x, exam.position.z)) {
-                        exam.position.x += direction.x * 0.01;
-                        exam.position.z += direction.z * 0.01;
-                    } else {
-                        exam.position.x += direction.x * 0.01;
-                        exam.position.z += direction.z * 0.01;
-                    }
+                    let newX = exam.position.x + direction.x * 0.01;
+                    let newY = exam.position.z + direction.z * 0.01;
 
+                    if (map.isValidPosition(newX, newY)) {
+                        exam.position.x = newX;
+                        exam.position.z = newY;
+                    } 
+                    
                     //dispose if hitCount hits 5
                     if (exam.hitCount >= 5) {
                         exam.dispose();
