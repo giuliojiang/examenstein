@@ -60,6 +60,9 @@ class Render {
 
         var enemy1 = new Enemy(-3, 0, scene, 2);
         var enemy2 = new Enemy(0, 15, scene, 2);
+        var enemy3 = new Enemy(3, 25, scene, 2);
+        var enemy4 = new Enemy(10, 27, scene, 2);
+        var enemy5 = new Enemy(10, 0, scene, 2);
         Enemy.setupMovements(scene);
       // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
       var light = new BABYLON.HemisphericLight(
