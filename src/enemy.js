@@ -20,6 +20,7 @@ class Enemy {
 
         var examMaterial = new BABYLON.StandardMaterial("material" + enemyNumber, scene)
         examMaterial.emissiveColor = new BABYLON.Color3(1, 1, 1);
+        examMaterial.diffuseTexture = new BABYLON.Texture("/res/exam0.jpeg", scene)
 
         exam.material = examMaterial;
 
