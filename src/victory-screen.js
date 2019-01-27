@@ -1,5 +1,9 @@
+import { StartScreen } from "./start-screen";
+
 export class VictoryScreen {
     static show(averageScore) {
+        StartScreen.stopGame();
+
         let scoreElem = document.querySelector("[data-victory-average-score]");
         scoreElem.innerText = `Average score: ${averageScore}`;
 
