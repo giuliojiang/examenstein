@@ -72,14 +72,25 @@ class CameraPlayer {
           }
           if (WeaponFire.checkFire(evt, scene) == true) {
             for (let enemy of enemyObjects) {
-              cameraPlayer.score = enemy.tryToDie();
+              console.log("camera-player.js: enemy", enemy);
+
+              var tempScore = enemy.theMesh.shot ? enemy.tryToDie() : -1;
+              console.log("camera-player.js: tempScore", tempScore);
+
+              if (tempScore != -1) {
+                cameraPlayer.score = tempScore;
+                enemy.theMesh.shot = false;
+                enemy.theMesh.dispose();
+                scores.push(cameraPlayer.score);
+                console.log("camera-player.js: scores", scores);
+              }
             }
             // if()
             console.log("Score: " + String(cameraPlayer.score));
             let scoreElem = document.querySelector("[data-score-text]");
-            if (cameraPlayer.score >= 0) {
-              scoreElem.innerText = `Average Score: \n ${cameraPlayer.score.toFixed(2)}`;
-            }
+            scoreElem.innerText = `Last Exam Score: ${Math.floor(
+              cameraPlayer.score
+            )}`;
           }
         };
         this._onKeyUp = function(evt) {
