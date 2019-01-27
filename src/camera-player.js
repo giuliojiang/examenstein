@@ -4,9 +4,7 @@ import * as sampleMap from "./sample-map";
 import { SoundEngine } from "./sound";
 import { enemy1 } from "./render";
 import { allEnemis, enemyObjects } from "./enemy";
-
 var camera;
-var scores = [];
 
 class CameraPlayer {
   constructor() {
@@ -87,7 +85,7 @@ class CameraPlayer {
                 console.log("camera-player.js: scores", scores);
               }
             }
-
+            // if()
             console.log("Score: " + String(cameraPlayer.score));
             let scoreElem = document.querySelector("[data-score-text]");
             scoreElem.innerText = `Last Exam Score: ${Math.floor(
