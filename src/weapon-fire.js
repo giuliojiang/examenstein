@@ -28,7 +28,13 @@ export class WeaponFire {
 
             // console.log(distance);
             if (hit.pickedMesh) {
-                console.log("hit the fucking enemy")
+                console.log("hit the fucking enemy");
+                // hit.pickedMesh.position.x += dir.x * 1;
+                // hit.pickedMesh.position.z += dir.z * 1;
+                enemy.position.x += dir.x * 1;
+                enemy.position.z += dir.z * 1;
+                
+
             }
         }
 
