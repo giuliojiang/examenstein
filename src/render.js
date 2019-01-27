@@ -73,7 +73,7 @@ export class Render {
             ground.checkCollisions = true;
         }
 
-        var remainingTime = 90;
+        var remainingTime = 60;
         let timerHandle = setInterval(() => {
           if (StartScreen.isStarted()) {
             remainingTime -= 1;
@@ -85,7 +85,7 @@ export class Render {
             }
 
             let timerElem = document.querySelector("[data-timer-text]");
-            timerElem.innerText = `Time: ${remainingTime}`;
+            timerElem.innerText = `Time: \n ${remainingTime}`;
           }
         }, 1000);
 
