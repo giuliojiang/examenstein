@@ -65,7 +65,7 @@ div {
 
 .handgun-positioner {
     position: fixed;
-    bottom: 0;
+    bottom: 121px;
     width: 100%;
     pointer-events: none;
 }
@@ -104,4 +104,10 @@ div {
 .timer {
     font-size: 30px;
     color: white;
+}
+
+.infobar-positionor {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
