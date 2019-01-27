@@ -9,6 +9,19 @@ let enemyObjects = [];
 let enemyNumber = 0;
 let aliveEnemies = 0;
 
+let decreaseEnemies = () => {
+    aliveEnemies -= 1;
+    console.info("now are alive <><><> " + aliveEnemies);
+    if (aliveEnemies <= 0) {
+        let avgscore = 0;
+        for (let score of cameraPlayer.scores) {
+            avgscore += score;
+        }
+        avgscore /= cameraPlayer.scores.length;
+        VictoryScreen.show(avgscore);
+    }
+}
+
 class Enemy {
 
     constructor(x, z, scene, decreaseRate) {
@@ -61,16 +74,7 @@ class Enemy {
 
     hideFromScreen() {
         this.theMesh.dispose();
-        aliveEnemies -= 1;
-        console.info("now are alive <><><> " + aliveEnemies);
-        if (aliveEnemis <= 0) {
-            let avgscore = 0;
-            for (let score of cameraPlayer.scores) {
-                avgscore += score;
-            }
-            avgscore /= cameraPlayer.scores.length;
-            VictoryScreen.show(avgscore);
-        }
+
     }
 
     static setupMovements(scene) {
@@ -103,4 +107,4 @@ class Enemy {
 }
 
 
-export {allEnemis, Enemy, enemyObjects}
+export {allEnemis, Enemy, enemyObjects, aliveEnemies, decreaseEnemies}

@@ -3,7 +3,7 @@ import { WeaponFire } from "./weapon-fire";
 import * as sampleMap from "./sample-map";
 import { SoundEngine } from "./sound";
 import { enemy1 } from "./render";
-import { allEnemis, enemyObjects } from "./enemy";
+import { allEnemis, enemyObjects, decreaseEnemies } from "./enemy";
 var camera;
 var scores = [];
 
@@ -82,6 +82,7 @@ class CameraPlayer {
                 cameraPlayer.score = tempScore;
                 enemy.theMesh.shot = false;
                 enemy.theMesh.dispose();
+                decreaseEnemies();
                 scores.push(cameraPlayer.score);
                 console.log("camera-player.js: scores", scores);
               }
