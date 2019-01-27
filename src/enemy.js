@@ -15,8 +15,10 @@ class Enemy {
         this.decreaseRate = decreaseRate;
         this.creationTime = Date.now();
         this.hitCount = 0; //goes to 4, exam dies at 5
+        this.maxCOunt = Math.floor(Math.random() * 5);
 
-        var exam = BABYLON.MeshBuilder.CreatePlane("exam" + enemyNumber, { width: 1.5, height: 2}, scene);     
+        var exam = BABYLON.MeshBuilder.CreatePlane("exam" + enemyNumber, { width: 1.5, height: 2}, scene);
+        exam.shot = false;     
 
         var examMaterial = new BABYLON.StandardMaterial("material" + enemyNumber, scene)
         examMaterial.emissiveColor = new BABYLON.Color3(1, 1, 1);
@@ -33,6 +35,8 @@ class Enemy {
 
         allEnemis.push(exam);
         enemyObjects.push(this);
+
+        this.theMesh = exam;
     }
 
     calculateScore() {
@@ -44,12 +48,16 @@ class Enemy {
     }
 
     tryToDie() {
-        if (this.hitCount < 4) {
+        if (this.hitCount < this.maxCOunt) {
           this.hitCount++;
           return -1;
         } else {
           return this.calculateScore();
         }
+      }
+
+    hideFromScreen() {
+        this.theMesh.dispose();
     }
 
     static setupMovements(scene) {
