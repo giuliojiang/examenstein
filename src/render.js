@@ -59,11 +59,7 @@ export class Render {
         // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
         var light = new BABYLON.HemisphericLight("light1",new BABYLON.Vector3(0, 1, 0),scene);
 
-<<<<<<< HEAD
-        var enemy1 = new Enemy(-5, 0);
-=======
         var enemy1 = new Enemy(-3, 0);
->>>>>>> 583deef03d29c8b41750a05e21521d8bf36989eb
         enemy1.setup(scene);
 
 
