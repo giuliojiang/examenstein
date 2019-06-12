@@ -1,5 +1,5 @@
 # uniquitous-octo-dollop
-[Link to play] (https://examenstein.jstudios.ovh)
+[Link to play](https://examenstein.jstudios.ovh)
 
 # quickstart
 
