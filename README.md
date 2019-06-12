@@ -1,5 +1,5 @@
 # uniquitous-octo-dollop
-a top secret hackathon project
+[Link to play] (https://examenstein.jstudios.ovh)
 
 # quickstart
 
