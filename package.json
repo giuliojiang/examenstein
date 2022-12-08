@@ -21,7 +21,7 @@
   "dependencies": {
     "babylonjs": "^3.3.0",
     "babylonjs-gui": "^3.3.0",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "webpack": "^5.47.1",
     "webpack-cli": "^4.7.2"
   }
